@@ -66,6 +66,7 @@ class NextScreen extends StatefulWidget {
 }
 
 class _NextScreenState extends State<NextScreen> {
+  var _backTextFieldController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,8 +74,22 @@ class _NextScreenState extends State<NextScreen> {
         title: Text('Second Screen'),
         centerTitle: true,
       ),
-      body: ListTile(
-        title: Text(widget.name),
+      body: Column(
+        children: [
+          ListTile(
+            title: Text(widget.name),
+          ),
+          TextField(
+            controller: _backTextFieldController,
+
+          ),
+          ElevatedButton(
+            onPressed: (() {
+              Navigator.pop(context, );
+            }),
+             child: Text('Send Back')
+            )
+        ],
       ),
     );
   }
