@@ -32,11 +32,16 @@ class _HomeState extends State<Home> {
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.settings))],
       ),
       body: ListView(
+        padding: EdgeInsets.only(top: 8.0),
         children: [
           ListTile(
             title: TextField(
               controller: _nameFieldController,
-              decoration: InputDecoration(labelText: "Enter Your Name"),
+              decoration: InputDecoration(
+                labelText: "Enter Your Name",
+                hintText: 'John Doe',
+                border: OutlineInputBorder()
+              ),
             ),
           ),
           ListTile(
@@ -77,22 +82,30 @@ class _NextScreenState extends State<NextScreen> {
         title: Text('Second Screen'),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          ListTile(
-            title: Text(widget.name),
-          ),
-          TextField(
-            controller: _backTextFieldController,
-          ),
-          ElevatedButton(
-              onPressed: (() {
-                Navigator.pop(context, {
-                  'info': _backTextFieldController.text,
-                });
-              }),
-              child: Text('Send Back'))
-        ],
+      body: Padding(
+        padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+        child: Column(
+          children: [
+            ListTile(
+              title: Text(widget.name),
+            ),
+            TextField(
+              controller: _backTextFieldController,
+              decoration: InputDecoration(
+                fillColor: Colors.red,
+                hintText: 'Enter a Name',
+                border: OutlineInputBorder()
+              ),
+            ),
+            ElevatedButton(
+                onPressed: (() {
+                  Navigator.pop(context, {
+                    'info': _backTextFieldController.text,
+                  });
+                }),
+                child: Text('Send Back'))
+          ],
+        ),
       ),
     );
   }
