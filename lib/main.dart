@@ -21,6 +21,14 @@ class _HomeState extends State<Home> {
         .push(MaterialPageRoute<dynamic>(builder: (BuildContext context) {
       return NextScreen(name: _nameFieldController.text);
     }));
+
+    if (results != null && results.containsKey("info")) {
+      // print(results['info']);
+      _nameFieldController.text = results['info'].toString();
+    }
+    else {
+      print('Nothing!');
+    }
   }
 
   @override
@@ -47,13 +55,13 @@ class _HomeState extends State<Home> {
           ListTile(
             title: ElevatedButton(
               onPressed: () {
-                var router = MaterialPageRoute(builder: (BuildContext context) {
-                  return NextScreen(
-                    name: _nameFieldController.text,
-                  );
-                });
+                // var router = MaterialPageRoute<dynamic>(builder: (BuildContext context) {
+                //   return NextScreen(
+                //     name: _nameFieldController.text,
+                //   );
 
-                Navigator.of(context).push(router);
+                // Navigator.of(context).push(router);
+                _goToNextScreen(context);
               },
               child: Text("Send to Second Screen"),
             ),
